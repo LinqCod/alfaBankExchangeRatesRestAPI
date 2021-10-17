@@ -18,17 +18,16 @@ public class GiphyGifServiceImpl implements GifService {
     }
 
     @Override
-    public Gif getRandomGif(String tag) {
-        Gif gifResult = null;
-
+    public String getRandomGif(String tag) {
+        String dataJson = null;
+        Gson gson = new Gson();
         try {
-            Gson gson = new Gson();
-            String dataJson = gson.toJson(gifClient.getRandomGif(apiKey, tag).getBody().get("data"));
-            gifResult = gson.fromJson(dataJson, Gif.class);
+
+            dataJson = gson.toJson(gifClient.getRandomGif(apiKey, tag).getBody().get("data"));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
-        return gifResult;
+        return dataJson;
     }
 }
