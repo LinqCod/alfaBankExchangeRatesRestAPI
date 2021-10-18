@@ -52,7 +52,8 @@ public class OpenExchangerRatesServiceImpl implements ExchangerRatesService {
         return compareCurrencyRates(currencyCode);
     }
 
-    void refreshCurrencyRates() {
+    @Override
+    public void refreshCurrencyRates() {
         long currentTime = System.currentTimeMillis();
         refreshYesterdayRates(currentTime);
         refreshCurrentRates(currentTime);

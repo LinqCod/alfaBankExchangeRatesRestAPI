@@ -3,6 +3,7 @@ package com.linqcod.alfabankexchangeratesrestapi.controller;
 import com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates.ExchangerRatesService;
 import com.linqcod.alfabankexchangeratesrestapi.service.gif.GifService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class MainController {
     }
 
     @GetMapping("/gif/{code}")
-    public String getGifByCurrencyCode(@PathVariable String code) {
+    public ResponseEntity<Map> getGifByCurrencyCode(@PathVariable String code) {
         int keyForGifTag = 2021;
         String gifTag;
         if(code != null) {

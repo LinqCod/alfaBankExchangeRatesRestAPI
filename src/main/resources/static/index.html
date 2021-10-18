@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ExchangeRatesService</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="./scripts.js"></script>
+</head>
+<body>
+    <h1>ExchangeRatesServiceAPI</h1>
+    <p>Created by linqcod (Balin Maxim) // <a href="https://github.com/linqcod">github repository</a></p>
+    <div style="text-align: center;">
+        <select name="currency_codes" id="currency_codes"></select>
+        <button id="load_btn" onclick="loadGif()">Check</button>
+        <div id="gif"></div>
+    </div>
+
+    <script>
+        $(loadCurrencyForSelect());
+    </script>
+</body>
+</html>

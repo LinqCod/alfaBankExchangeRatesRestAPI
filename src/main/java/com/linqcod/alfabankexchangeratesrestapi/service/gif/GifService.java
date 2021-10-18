@@ -1,8 +1,9 @@
 package com.linqcod.alfabankexchangeratesrestapi.service.gif;
 
-import com.google.gson.JsonObject;
-import com.linqcod.alfabankexchangeratesrestapi.model.Gif;
+import org.springframework.http.ResponseEntity;
+
+import java.util.Map;
 
 public interface GifService {
-    String getRandomGif(String tag);
+    ResponseEntity<Map> getRandomGif(String tag);
 }
