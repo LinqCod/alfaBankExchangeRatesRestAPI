@@ -1,5 +1,8 @@
 package com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates;
 
-public interface ExchangerRatesService {
+import java.util.List;
 
+public interface ExchangerRatesService {
+    List<String> getCurrencyCodes();
+    int getKeyForGifTag(String currencyCode);
 }

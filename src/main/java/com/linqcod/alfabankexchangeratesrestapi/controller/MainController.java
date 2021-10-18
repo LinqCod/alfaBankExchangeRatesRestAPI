@@ -1,24 +1,61 @@
 package com.linqcod.alfabankexchangeratesrestapi.controller;
 
+import com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates.ExchangerRatesService;
 import com.linqcod.alfabankexchangeratesrestapi.service.gif.GifService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/exchangerates/api")
 public class MainController {
 
+    private ExchangerRatesService exchangerRatesService;
     private GifService gifService;
+    @Value("${giphy.rich}")
+    private String richTag;
+    @Value("${giphy.broke}")
+    private String brokeTag;
+    @Value("${giphy.equal}")
+    private String equalTag;
+    @Value("${giphy.error}")
+    private String errorTag;
 
-    public MainController(GifService gifService) {
+    public MainController(ExchangerRatesService exchangerRatesService, GifService gifService) {
+        this.exchangerRatesService = exchangerRatesService;
         this.gifService = gifService;
     }
 
-    @GetMapping("/gif")
-    String testGettingGif() {
-        String result = gifService.getRandomGif("broke");
-        return result;
+    @GetMapping("/getcurrencycodes")
+    public List<String> getCurrencyCodes() {
+        return exchangerRatesService.getCurrencyCodes();
+    }
+
+    @GetMapping("/gif/{code}")
+    public String getGifByCurrencyCode(@PathVariable String code) {
+        int keyForGifTag = 2021;
+        String gifTag;
+        if(code != null) {
+            keyForGifTag = exchangerRatesService.getKeyForGifTag(code);
+        }
+        switch (keyForGifTag) {
+            case 1:
+                gifTag = richTag;
+                break;
+            case 0:
+                gifTag = equalTag;
+                break;
+            case -1:
+                gifTag = brokeTag;
+                break;
+            default:
+                gifTag = errorTag;
+                break;
+        }
+
+        return gifService.getRandomGif(gifTag);
     }
 
 }
