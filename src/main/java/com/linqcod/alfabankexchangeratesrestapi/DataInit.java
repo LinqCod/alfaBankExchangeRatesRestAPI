@@ -1,6 +1,6 @@
 package com.linqcod.alfabankexchangeratesrestapi;
 
-import com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates.ExchangerRatesService;
+import com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates.ExchangeRatesService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -8,14 +8,14 @@ import javax.annotation.PostConstruct;
 @Component
 public class DataInit {
 
-    private ExchangerRatesService exchangerRatesService;
+    private ExchangeRatesService exchangeRatesService;
 
-    public DataInit(ExchangerRatesService exchangerRatesService) {
-        this.exchangerRatesService = exchangerRatesService;
+    public DataInit(ExchangeRatesService exchangeRatesService) {
+        this.exchangeRatesService = exchangeRatesService;
     }
 
     @PostConstruct
     public void initData() {
-        exchangerRatesService.refreshCurrencyRates();
+        exchangeRatesService.refreshCurrencyRates();
     }
 }

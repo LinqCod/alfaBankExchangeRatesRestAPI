@@ -1,6 +1,6 @@
 package com.linqcod.alfabankexchangeratesrestapi.controller;
 
-import com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates.ExchangerRatesService;
+import com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates.ExchangeRatesService;
 import com.linqcod.alfabankexchangeratesrestapi.service.gif.GifService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.Map;
 @RequestMapping("/exchangerates/api")
 public class MainController {
 
-    private ExchangerRatesService exchangerRatesService;
+    private ExchangeRatesService exchangeRatesService;
     private GifService gifService;
     @Value("${giphy.rich}")
     private String richTag;
@@ -24,14 +24,14 @@ public class MainController {
     @Value("${giphy.error}")
     private String errorTag;
 
-    public MainController(ExchangerRatesService exchangerRatesService, GifService gifService) {
-        this.exchangerRatesService = exchangerRatesService;
+    public MainController(ExchangeRatesService exchangeRatesService, GifService gifService) {
+        this.exchangeRatesService = exchangeRatesService;
         this.gifService = gifService;
     }
 
     @GetMapping("/getcurrencycodes")
     public List<String> getCurrencyCodes() {
-        return exchangerRatesService.getCurrencyCodes();
+        return exchangeRatesService.getCurrencyCodes();
     }
 
     @GetMapping("/gif/{code}")
@@ -39,7 +39,7 @@ public class MainController {
         int keyForGifTag = 2021;
         String gifTag;
         if(code != null) {
-            keyForGifTag = exchangerRatesService.getKeyForGifTag(code);
+            keyForGifTag = exchangeRatesService.getKeyForGifTag(code);
         }
         switch (keyForGifTag) {
             case 1:

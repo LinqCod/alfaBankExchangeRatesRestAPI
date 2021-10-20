@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 @Service
-public class OpenExchangerRatesServiceImpl implements ExchangerRatesService {
+public class OpenExchangeRatesServiceImpl implements ExchangeRatesService {
     private ExchangeRatesClient exchangeRatesClient;
 
     private ExchangeRates yesterdayRates;
@@ -25,7 +24,7 @@ public class OpenExchangerRatesServiceImpl implements ExchangerRatesService {
     @Value("${openexchangerates.base}")
     private String base;
 
-    public OpenExchangerRatesServiceImpl(
+    public OpenExchangeRatesServiceImpl(
             ExchangeRatesClient exchangeRatesClient,
             @Qualifier("date_bean") SimpleDateFormat simpleDateFormat,
             @Qualifier("time_bean") SimpleDateFormat simpleTimeFormat
