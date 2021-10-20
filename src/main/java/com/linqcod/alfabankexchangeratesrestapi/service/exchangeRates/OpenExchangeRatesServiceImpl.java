@@ -2,6 +2,7 @@ package com.linqcod.alfabankexchangeratesrestapi.service.exchangeRates;
 
 import com.linqcod.alfabankexchangeratesrestapi.client.exchangeRates.ExchangeRatesClient;
 import com.linqcod.alfabankexchangeratesrestapi.model.ExchangeRates;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Service
 public class OpenExchangeRatesServiceImpl implements ExchangeRatesService {
+
     private ExchangeRatesClient exchangeRatesClient;
 
     private ExchangeRates yesterdayRates;
@@ -21,9 +23,8 @@ public class OpenExchangeRatesServiceImpl implements ExchangeRatesService {
     private SimpleDateFormat timeFormat;
     @Value("${openexchangerates.app.id}")
     private String appId;
-    @Value("${openexchangerates.base}")
-    private String base;
 
+    @Autowired
     public OpenExchangeRatesServiceImpl(
             ExchangeRatesClient exchangeRatesClient,
             @Qualifier("date_bean") SimpleDateFormat simpleDateFormat,

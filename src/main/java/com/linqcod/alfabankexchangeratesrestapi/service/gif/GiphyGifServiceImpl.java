@@ -1,7 +1,7 @@
 package com.linqcod.alfabankexchangeratesrestapi.service.gif;
 
-import com.google.gson.Gson;
 import com.linqcod.alfabankexchangeratesrestapi.client.gif.GifClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,7 @@ public class GiphyGifServiceImpl implements GifService {
     @Value("${giphy.error.msg}")
     private String errorMsg;
 
+    @Autowired
     public GiphyGifServiceImpl(GifClient gifClient) {
         this.gifClient = gifClient;
     }
